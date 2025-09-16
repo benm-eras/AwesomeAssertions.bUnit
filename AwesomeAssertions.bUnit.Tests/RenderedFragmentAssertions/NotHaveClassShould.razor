@@ -1,0 +1,48 @@
+
+@inherits Bunit.TestContext
+
+@code {
+    
+    [Test]
+    public void Succeed()
+    {
+        Render(@<button class="btn big cta"><h1>Test</h1></button>)
+            .Should().NotHaveClass("btn-large");
+    }
+    
+    [Test]
+    public void Succeed_WhenNoClassInMarkup()
+    {
+        Render(@<button><h1>Test</h1></button>)
+            .Should().NotHaveClass("btn-large");
+    }
+    
+    [Test]
+    public void ReturnAndConstraint()
+    {
+        var andConstraint = Render(@<button class="btn big cta"><h1>Test</h1></button>)
+            .Should().NotHaveClass("btn-large");
+
+        andConstraint.Should().BeOfType<AndConstraint<RenderedFragmentAssertions>>();
+    }
+
+    [Test]
+    public void ThrowException_WhenClassIsFound()
+    {
+        Action aut = () => Render(@<button class="btn btn-large big cta"><h1>Test</h1></button>)
+            .Should().NotHaveClass("btn-large");
+
+        aut.Should().Throw<AssertionException>()
+            .And.Message.Should().Be("""Expected IRenderedFragment to not have class "btn-large", but found it.""");
+    }
+    
+    [Test]
+    public void ThrowException_WhenClassIsFound_AndShouldIncludeBecauseMessage()
+    {
+        Action aut = () => Render(@<button class="btn btn-large big cta"><h1>Test</h1></button>)
+            .Should().NotHaveClass("btn-large", "this is very important to {0}", "Ben");
+
+        aut.Should().Throw<AssertionException>()
+            .And.Message.Should().Be("""Expected IRenderedFragment to not have class "btn-large" because this is very important to Ben, but found it.""");
+    }
+}

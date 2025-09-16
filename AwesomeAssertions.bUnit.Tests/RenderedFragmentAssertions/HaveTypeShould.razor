@@ -1,0 +1,61 @@
+
+@inherits Bunit.TestContext
+
+@code {
+    
+    [Test]
+    public void Succeed()
+    {
+        Render(@<button type="button">Click me</button>)
+            .Should().HaveType("button");
+    }
+    
+    [Test]
+    public void ReturnAndConstraint()
+    {
+        var andConstraint = Render(@<button type="button">Click me</button>)
+            .Should().HaveType("button");
+
+        andConstraint.Should().BeOfType<AndConstraint<RenderedFragmentAssertions>>();
+    }
+    
+    [Test]
+    public void ThrowException_WhenDoesNotHaveAttribute()
+    {
+        Action aut = () => Render(@<button>Click me</button>)
+            .Should().HaveType("button");
+
+        aut.Should().Throw<AssertionException>()
+            .And.Message.Should().Be("Expected IRenderedFragment to have attribute \"type\", but found <null>.");
+    }
+    
+    [Test]
+    public void ThrowException_WhenDoesNotHaveAttribute_AndShouldIncludeBecauseMessage()
+    {
+        Action aut = () => Render(@<button>Click me</button>)
+            .Should().HaveType("button", "this is very important to {0}", "Steve");
+
+        aut.Should().Throw<AssertionException>()
+            .And.Message.Should().Be("Expected IRenderedFragment to have attribute \"type\" because this is very important to Steve, but found <null>.");
+    }
+    
+    [Test]
+    public void ThrowException_WhenHasAttributeWithWrongValue()
+    {
+        Action aut = () => Render(@<button type="reset">Click me</button>)
+            .Should().HaveType("button");
+
+        aut.Should().Throw<AssertionException>()
+            .And.Message.Should().Be("Expected IRenderedFragment \"type\" attribute to have value \"button\", but found \"reset\".");
+    }
+    
+    [Test]
+    public void ThrowException_WhenHasAttributeWithWrongValue_AndShouldIncludeBecauseMessage()
+    {
+        Action aut = () => Render(@<button type="reset">Click me</button>)
+            .Should().HaveType("button", "this is very important to {0}", "Steve");
+
+        aut.Should().Throw<AssertionException>()
+            .And.Message.Should().Be("Expected IRenderedFragment \"type\" attribute to have value \"button\" because this is very important to Steve, but found \"reset\".");
+    }
+}

@@ -1,0 +1,23 @@
+
+@inherits Bunit.TestContext
+
+@code {
+    
+    [Test]
+    public void SucceedWhenAssignable()
+    {
+        Render(@<img src="/logo.png" alt="Logo">)
+            .AsElement()
+            .Should().NotBeAssignableTo<string>();
+    }
+    
+    [Test]
+    public void ThrowExceptionWhenNotAssignable()
+    {
+        Action aut = () => Render(@<img src="/logo.png" alt="Logo">)
+            .AsElement()
+            .Should().NotBeAssignableTo<IElement>();
+
+        aut.Should().Throw<AssertionException>();
+    }
+}

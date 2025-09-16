@@ -1,0 +1,25 @@
+
+@inherits Bunit.TestContext
+
+@code {
+    
+    [Test]
+    public void SucceedWhenComparingToSameReference()
+    {
+        var element = Render(@<img src="/logo.png" alt="Logo">)
+            .AsElement();
+        
+        element
+            .Should().BeSameAs(element);
+    }
+
+    [Test]
+    public void ThrowExceptionWhenComparingToAnotherReference()
+    {
+        Action aut = () => Render(@<img src="/logo.png" alt="Logo">)
+            .AsElement()
+            .Should().BeSameAs(Render(@<img src="/logo.png" alt="Logo">).AsElement());
+
+        aut.Should().Throw<AssertionException>();
+    }
+}

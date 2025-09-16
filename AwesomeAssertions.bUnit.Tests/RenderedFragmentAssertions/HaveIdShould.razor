@@ -1,0 +1,61 @@
+
+@inherits Bunit.TestContext
+
+@code {
+    
+    [Test]
+    public void Succeed()
+    {
+        Render(@<button id="special-button">Click Me</button>)
+            .Should().HaveId("special-button");
+    }
+    
+    [Test]
+    public void ReturnAndConstraint()
+    {
+        var andConstraint = Render(@<button id="special-button">Click Me</button>)
+            .Should().HaveId("special-button");
+
+        andConstraint.Should().BeOfType<AndConstraint<RenderedFragmentAssertions>>();
+    }
+    
+    [Test]
+    public void ThrowException_WhenDoesNotHaveAttribute()
+    {
+        Action aut = () => Render(@<button>Click Me</button>)
+            .Should().HaveId("special-button");
+
+        aut.Should().Throw<AssertionException>()
+            .And.Message.Should().Be("Expected IRenderedFragment to have attribute \"id\", but found <null>.");
+    }
+    
+    [Test]
+    public void ThrowException_WhenDoesNotHaveAttribute_AndShouldIncludeBecauseMessage()
+    {
+        Action aut = () => Render(@<button>Click Me</button>)
+            .Should().HaveId("special-button", "this is very important to {0}", "Steve");
+
+        aut.Should().Throw<AssertionException>()
+            .And.Message.Should().Be("Expected IRenderedFragment to have attribute \"id\" because this is very important to Steve, but found <null>.");
+    }
+    
+    [Test]
+    public void ThrowException_WhenHasAttributeWithWrongValue()
+    {
+        Action aut = () => Render(@<button id="special-btn">Click Me</button>)
+            .Should().HaveId("special-button");
+
+        aut.Should().Throw<AssertionException>()
+            .And.Message.Should().Be("Expected IRenderedFragment \"id\" attribute to have value \"special-button\", but found \"special-btn\".");
+    }
+    
+    [Test]
+    public void ThrowException_WhenHasAttributeWithWrongValue_AndShouldIncludeBecauseMessage()
+    {
+        Action aut = () => Render(@<button id="special-btn">Click Me</button>)
+            .Should().HaveId("special-button", "this is very important to {0}", "Steve");
+
+        aut.Should().Throw<AssertionException>()
+            .And.Message.Should().Be("Expected IRenderedFragment \"id\" attribute to have value \"special-button\" because this is very important to Steve, but found \"special-btn\".");
+    }
+}

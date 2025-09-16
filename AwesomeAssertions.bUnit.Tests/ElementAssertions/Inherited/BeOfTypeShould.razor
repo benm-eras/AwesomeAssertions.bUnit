@@ -1,0 +1,25 @@
+
+@inherits Bunit.TestContext
+
+@code {
+    
+    [Test]
+    public void SucceedWhenOfType()
+    {
+        var element = Render(@<img src="/logo.png" alt="Logo">)
+            .AsElement();
+        
+        element
+            .Should().BeOfType(element.GetType());
+    }
+    
+    [Test]
+    public void ThrowExceptionWhenNotOfType()
+    {
+        Action aut = () => Render(@<img src="/logo.png" alt="Logo">)
+            .AsElement()
+            .Should().BeOfType<IRenderedFragment>();
+
+        aut.Should().Throw<AssertionException>();
+    }
+}

@@ -1,0 +1,23 @@
+
+@inherits Bunit.TestContext
+
+@code {
+    
+    [Test]
+    public void SucceedWhenMatches()
+    {
+        Render(@<img src="/logo.png" alt="Logo">)
+            .AsElement()
+            .Should().Match(e => e.Attributes["alt"].Value == "Logo");
+    }
+    
+    [Test]
+    public void ThrowExceptionWhenDoesNotMatch()
+    {
+        Action aut = () => Render(@<img src="/logo.png" alt="Loog">)
+            .AsElement()
+            .Should().Match(e => e.Attributes["alt"].Value == "Logo");
+
+        aut.Should().Throw<AssertionException>();
+    }
+}

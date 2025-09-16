@@ -1,0 +1,46 @@
+@inherits Bunit.TestContext
+
+@code {
+    
+    [Test]
+    public void ReturnElementWhenTopLevelComponent()
+    {
+        IRenderedFragment renderedFragment = Render(@<button data-test-class="my-button">Click me</button>);
+
+        IElement element = renderedFragment.FindByDataTestClass("my-button");
+        
+        element.MarkupMatches(@<button data-test-class="my-button">Click me</button>);
+    }
+    
+    [Test]
+    public void ReturnElementWhenNestedComponent()
+    {
+        IRenderedFragment renderedFragment = Render(@<div><button data-test-class="my-button">Click me</button></div>);
+
+        IElement element = renderedFragment.FindByDataTestClass("my-button");
+        
+        element.MarkupMatches(@<button data-test-class="my-button">Click me</button>);
+    }
+    
+    [Test]
+    public void ReturnFirstElementWhenMultipleMatchingComponents()
+    {
+        IRenderedFragment renderedFragment = Render(@<div>
+                                          <button data-test-class="my-button">Click me 1</button>
+                                          <button data-test-class="my-button">Click me 2</button>
+                                      </div>);
+
+        IElement element = renderedFragment.FindByDataTestClass("my-button");
+        
+        element.MarkupMatches(@<button data-test-class="my-button">Click me 1</button>);
+    }
+    
+    [Test]
+    public void ReturnNullWhenNoMatchingComponents()
+    {
+        Action aut = () => Render(@<div></div>)
+            .FindByDataTestClass("my-button");
+
+        aut.Should().Throw<ElementNotFoundException>();
+    }
+}

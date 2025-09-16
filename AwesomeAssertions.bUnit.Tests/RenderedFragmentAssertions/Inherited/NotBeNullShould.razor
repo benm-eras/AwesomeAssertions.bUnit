@@ -1,0 +1,24 @@
+
+@inherits Bunit.TestContext
+
+@code {
+    
+    [Test]
+    public void SucceedWhenNotNull()
+    {
+        Render(@<img src="/logo.png" alt="Logo">)
+            .Should().NotBeNull();
+    }
+    
+    [Test]
+    public void ThrowExceptionWhenNull()
+    {
+        Action aut = () =>
+        {
+            IRenderedFragment f = null;
+            f.Should().NotBeNull();
+        };
+        
+        aut.Should().Throw<AssertionException>();
+    }
+}
