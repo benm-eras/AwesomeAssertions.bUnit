@@ -9,6 +9,11 @@
 		<RepositoryUrl>https://github.com/benm-eras/AwesomeAssertions.bUnit</RepositoryUrl>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageTags>Blazor;BUnit;AwesomeAssertions</PackageTags>
+		<PackageId>Eras.$(AssemblyName)</PackageId>
+		<Authors>benm-eras</Authors>
+		<Company>eras</Company>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Version>1.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -17,4 +22,7 @@
 		<PackageReference Include="bunit" Version="1.40.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 </Project>

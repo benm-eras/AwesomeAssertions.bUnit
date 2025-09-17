@@ -1,11 +1,11 @@
-[![NuGet version (FluentAssertions.BUnit)](https://img.shields.io/nuget/v/FluentAssertions.BUnit.svg?style=flat-square)](https://www.nuget.org/packages/FluentAssertions.BUnit/)
-[![Nuget](https://img.shields.io/nuget/dt/FluentAssertions.BUnit?logo=nuget&style=flat-square)](https://www.nuget.org/packages/FluentAssertions.BUnit/)
-[![.NET](https://github.com/srpeirce/fluentassertions.bUnit/actions/workflows/dotnet.yml/badge.svg)](https://github.com/srpeirce/fluentassertions.bUnit/actions/workflows/dotnet.yml)
-[![MIT License](https://img.shields.io/github/license/dotnet/aspnetcore?color=%230b0&style=flat-square)](https://github.com/srpeirce/fluentassertions.bUnit/blob/main/LICENSE)
+[![NuGet version (Eras.AwesomeAssertions.bUnit)](https://img.shields.io/nuget/v/Eras.AwesomeAssertions.bUnit.svg?style=flat-square)](https://www.nuget.org/packages/Eras.AwesomeAssertions.bUnit/)
+[![Nuget](https://img.shields.io/nuget/dt/Eras.AwesomeAssertions.bUnit?logo=nuget&style=flat-square)](https://www.nuget.org/packages/Eras.AwesomeAssertions.bUnit/)
+[![.NET](https://github.com/benm-eras/AwesomeAssertions.bUnit/actions/workflows/dotnet.yml/badge.svg)](https://github.com/benm-eras/AwesomeAssertions.bUnit/actions/workflows/dotnet.yml)
+[![MIT License](https://img.shields.io/github/license/dotnet/aspnetcore?color=%230b0&style=flat-square)](https://github.com/benm-eras/AwesomeAssertions.bUnit/blob/main/LICENSE)
 
-# Fluentassertions.bUnit
+# AwesomeAssertions.bUnit
 
-FluentAssertions.bUnit is an assertions library that is used in conjunction with bUnit.
+AwesomeAssertions.bUnit is an assertions library that is used in conjunction with bUnit.
 
 It offers fluent assertions syntax to rendered components.
 
@@ -19,7 +19,7 @@ It offers fluent assertions syntax to rendered components.
 
 Install Nuget Package into test project:
 ```
-dotnet install FluentAssertions.BUnit
+dotnet install Eras.AwesomeAssertions.bUnit
 ```
 
 Use bUnit to render component.
@@ -51,11 +51,11 @@ Use intellisense and look at the code for now :-)
 
 ### Find Element
 
-[Find Element](https://github.com/srpeirce/fluentassertions.bUnit/blob/main/FluentAssertions.BUnit/BUnitExtensions.cs)
+[Find Element](https://github.com/benm-eras/AwesomeAssertions.bUnit/blob/main/Eras.AwesomeAssertions.bUnit/BUnitExtensions.cs)
 
 ### Assertions
 
-[Assertions](https://github.com/srpeirce/fluentassertions.bUnit/blob/main/FluentAssertions.BUnit/BUnitAssertions.cs)
+[Assertions](https://github.com/benm-eras/AwesomeAssertions.bUnit/blob/main/Eras.AwesomeAssertions.bUnit/BUnitAssertions.cs)
 
 ## Contributions
 
