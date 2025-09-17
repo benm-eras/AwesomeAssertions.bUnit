@@ -3,7 +3,7 @@ using Bunit;
 
 namespace AwesomeAssertions.bUnit;
 
-public static class BUnitExtensions
+public static class RenderedFragmentExtensions
 {
     public static IElement FindByDataTestId(this IRenderedFragment component, string dataTestId)
         => component.Find($"[data-test-id='{dataTestId}']");

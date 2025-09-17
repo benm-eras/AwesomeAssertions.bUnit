@@ -27,7 +27,7 @@ Use bUnit to render component.
 Then write assertions...
 
 ```csharp
-    [Fact]
+    [Test]
     public void RenderWithChildContent()
     {
         Render(@<Button><h1>Test</h1></Button>)
@@ -35,7 +35,7 @@ Then write assertions...
             .And.HaveChildMarkup(@<h1>Test</h1>);
     }
 
-    [Fact]
+    [Test]
     public void SetDefaultCssClasses()
     {
         Render(@<Button><h1>Test</h1></Button>)
@@ -51,19 +51,14 @@ Use intellisense and look at the code for now :-)
 
 ### Find Element
 
-[Find Element](https://github.com/benm-eras/AwesomeAssertions.bUnit/blob/main/Eras.AwesomeAssertions.bUnit/BUnitExtensions.cs)
+[Find Element](https://github.com/benm-eras/AwesomeAssertions.bUnit/blob/main/AwesomeAssertions.bUnit/RenderedFragmentExtensions.cs)
 
 ### Assertions
 
-[Assertions](https://github.com/benm-eras/AwesomeAssertions.bUnit/blob/main/Eras.AwesomeAssertions.bUnit/BUnitAssertions.cs)
+[Elements](https://github.com/benm-eras/AwesomeAssertions.bUnit/blob/main/AwesomeAssertions.bUnit/ElementAssertions.cs) and [Render Fragments](https://github.com/benm-eras/AwesomeAssertions.bUnit/blob/main/AwesomeAssertions.bUnit/RenderedFragmentAssertions.cs)
 
 ## Contributions
 
 Currently in a very early version/stage of this project.
 
 Please raise issues and feel free to submit PRs (happy to discuss in an issue first to avoid wasted effort).
-
-
-## Sponsors
-
-Thanks [Powered4 TV](https://powered4.tv/) for supporting us.
